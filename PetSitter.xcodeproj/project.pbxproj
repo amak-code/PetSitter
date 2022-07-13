@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E5DC9034287F76CE0004A1E4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC9033287F76CE0004A1E4 /* MapView.swift */; };
+		E5DC9036287F76E00004A1E4 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC9035287F76E00004A1E4 /* SearchView.swift */; };
 		E5F4F7CC287E450300C2947B /* PetSitterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F4F7CB287E450300C2947B /* PetSitterApp.swift */; };
 		E5F4F7D0287E450600C2947B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F4F7CF287E450600C2947B /* Assets.xcassets */; };
 		E5F4F7D3287E450600C2947B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F4F7D2287E450600C2947B /* Preview Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E5DC9033287F76CE0004A1E4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E5DC9035287F76E00004A1E4 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		E5F4F7C8287E450300C2947B /* PetSitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetSitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F4F7CB287E450300C2947B /* PetSitterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSitterApp.swift; sourceTree = "<group>"; };
 		E5F4F7CF287E450600C2947B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 				E5F4F7DD287E477600C2947B /* MainPageView.swift */,
 				E5F4F7E2287E4C9C00C2947B /* PetOwnerStartingPageView.swift */,
 				E5F4F7E4287E4CC100C2947B /* PetSitterCreatingPostView.swift */,
+				E5DC9033287F76CE0004A1E4 /* MapView.swift */,
+				E5DC9035287F76E00004A1E4 /* SearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,7 +185,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5F4F7E1287E486A00C2947B /* Post.swift in Sources */,
+				E5DC9034287F76CE0004A1E4 /* MapView.swift in Sources */,
 				E5F4F7E3287E4C9C00C2947B /* PetOwnerStartingPageView.swift in Sources */,
+				E5DC9036287F76E00004A1E4 /* SearchView.swift in Sources */,
 				E5F4F7DE287E477600C2947B /* MainPageView.swift in Sources */,
 				E5F4F7E5287E4CC100C2947B /* PetSitterCreatingPostView.swift in Sources */,
 				E5F4F7CC287E450300C2947B /* PetSitterApp.swift in Sources */,

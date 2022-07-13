@@ -23,39 +23,39 @@ struct MainPageView: View {
                         .font(.system(size: 30, weight: .bold, design: .rounded))
                         .padding(-60)
                     
-                    Spacer()
+                 
                     
                     VStack{
+                        
                         Button(action: {
                          }) {
                              NavigationLink(destination: PetOwnerStartingPageView()) {
                              Text("I'm a pet owner")
-                                     .padding()
+                                     .padding(30)
                                      .background(.white)
-                                     .font(.system(size: 20, weight: .regular, design: .rounded))
+                                     .font(.system(size: 25, weight: .regular, design: .rounded))
                                      .foregroundColor(.black)
                                      .cornerRadius(12)
                                      .clipShape(Capsule())
                                     
                                      
-                             }
+                             }//.frame(maxHeight: .infinity, alignment: .bottom)
                          }
                         
                         Button(action: {
                          }) {
                              NavigationLink(destination: PetSitterCreatingPostView()) {
                              Text("I'm a pet sitter")
-                                     .padding()
+                                     .padding(30)
                                      .background(.white)
-                                     .font(.system(size: 20, weight: .regular, design: .rounded))
+                                     .font(.system(size: 25, weight: .regular, design: .rounded))
                                      .foregroundColor(.black)
                                      .cornerRadius(12)
                                      .clipShape(Capsule())
-                                    
-                                     
+   
                                      
                              }
-                         }.frame(maxHeight: .infinity, alignment: .top)
+                         }.frame(maxHeight: .infinity, alignment: .bottom)
                     }.padding()
                     
                     Spacer()
