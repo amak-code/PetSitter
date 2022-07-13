@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		E5F4F7CC287E450300C2947B /* PetSitterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F4F7CB287E450300C2947B /* PetSitterApp.swift */; };
-		E5F4F7CE287E450300C2947B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F4F7CD287E450300C2947B /* ContentView.swift */; };
 		E5F4F7D0287E450600C2947B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F4F7CF287E450600C2947B /* Assets.xcassets */; };
 		E5F4F7D3287E450600C2947B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F4F7D2287E450600C2947B /* Preview Assets.xcassets */; };
+		E5F4F7DE287E477600C2947B /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F4F7DD287E477600C2947B /* MainPageView.swift */; };
+		E5F4F7E1287E486A00C2947B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F4F7E0287E486A00C2947B /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E5F4F7C8287E450300C2947B /* PetSitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetSitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F4F7CB287E450300C2947B /* PetSitterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSitterApp.swift; sourceTree = "<group>"; };
-		E5F4F7CD287E450300C2947B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E5F4F7CF287E450600C2947B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5F4F7D2287E450600C2947B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E5F4F7DD287E477600C2947B /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
+		E5F4F7E0287E486A00C2947B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +53,11 @@
 		E5F4F7CA287E450300C2947B /* PetSitter */ = {
 			isa = PBXGroup;
 			children = (
+				E5F4F7DC287E46F200C2947B /* Resources */,
+				E5F4F7DB287E46EB00C2947B /* Views */,
+				E5F4F7DA287E45A600C2947B /* ViewModels */,
+				E5F4F7D9287E459C00C2947B /* Models */,
 				E5F4F7CB287E450300C2947B /* PetSitterApp.swift */,
-				E5F4F7CD287E450300C2947B /* ContentView.swift */,
 				E5F4F7CF287E450600C2947B /* Assets.xcassets */,
 				E5F4F7D1287E450600C2947B /* Preview Content */,
 			);
@@ -65,6 +70,36 @@
 				E5F4F7D2287E450600C2947B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E5F4F7D9287E459C00C2947B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E5F4F7E0287E486A00C2947B /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E5F4F7DA287E45A600C2947B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E5F4F7DB287E46EB00C2947B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E5F4F7DD287E477600C2947B /* MainPageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E5F4F7DC287E46F200C2947B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +172,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5F4F7CE287E450300C2947B /* ContentView.swift in Sources */,
+				E5F4F7E1287E486A00C2947B /* Post.swift in Sources */,
+				E5F4F7DE287E477600C2947B /* MainPageView.swift in Sources */,
 				E5F4F7CC287E450300C2947B /* PetSitterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
