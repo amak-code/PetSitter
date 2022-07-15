@@ -12,20 +12,55 @@ import MapKit
 struct MapView: View {
     
     @StateObject private var viewModel = MapViewModel()
+    @State var userTrackingMode: MapUserTrackingMode = .follow
+    @State var zoom: CGFloat = 10
+    var locations: [Location] {
+        
+      var first =  Location(name: "First sitter", coordinate: CLLocationCoordinate2D(latitude: 37.795162, longitude: -122.402728));
+      var second = Location(name: "Second sitter", coordinate: CLLocationCoordinate2D(latitude: 37.7897, longitude: -122.3972))
+        
+        return [first, second]
+    }
     
     var body: some View {
         
-        ZStack {
-            Map(coordinateRegion: $viewModel.mapRegion, showsUserLocation: true, userTrackingMode: .constant(.follow))
-                .ignoresSafeArea()
-            Circle()
-                .fill(.indigo)
-                .opacity(0.6)
-                .frame(width: 32, height: 32)
+        VStack{
+            
+            Map(coordinateRegion: $viewModel.mapRegion,
+                interactionModes: .all,
+                showsUserLocation: true, userTrackingMode: $userTrackingMode, annotationItems: locations
+            ){location in
+                MapAnnotation(coordinate: location.coordinate) {
+                    NavigationLink {
+                        PostDetailView()
+                        Text(location.name ?? "")
+                    } label: {
+                        Circle()
+                            .stroke(.red, lineWidth: 3)
+                            .frame(width: 34, height: 34)
+                    }
+                }
+                
+                
+            }
+            .ignoresSafeArea()
             .onAppear{
                 viewModel.checkLocationServicesIsEnabled()
             }
-        }
+            
+            Slider(value: $zoom,
+                         in: 0.01...10,
+                         minimumValueLabel: Image(systemName: "plus.circle"),
+                         maximumValueLabel: Image(systemName: "minus.circle"), label: {})
+                    .padding(.horizontal)
+                    .onChange(of: zoom) { value in
+                        viewModel.mapRegion.span.latitudeDelta = CLLocationDegrees(value)
+                        viewModel.mapRegion.span.longitudeDelta = CLLocationDegrees(value)
+                    }
+               
+            
+        }//Vstack
+        .font(.title)
     }
 }
 
@@ -54,7 +89,7 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         
     }
     
-    func checkLoactionAuthorization(){
+   private func checkLoactionAuthorization(){
         
         guard let locationManager = locationManager else {return}
         

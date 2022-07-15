@@ -9,10 +9,7 @@ import SwiftUI
 
 struct PetOwnerStartingPageView: View {
     var body: some View {
-        
-        NavigationView{
             
-              
             VStack(alignment: .center, spacing: 8){
                     
                     Text("Find a pet sitter for your loved ones!")
@@ -68,8 +65,6 @@ struct PetOwnerStartingPageView: View {
                 }//main VStack
 //                .navigationTitle("Welcome to Pet Sitter!")
   
-            
-        }
         
     }
 }
