@@ -8,15 +8,15 @@
 import Foundation
 import UIKit
 
-struct Post {
+struct Post: Identifiable {
    
-
+    let id = UUID()
     var name: String
     var phone: String
     var email: String
-    var picture: UIImage?
+    var picture: String?
     var zipcode: Int
     var price: Int
     var textPost: String
-    
+    var location: Location
 }

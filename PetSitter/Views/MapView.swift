@@ -9,31 +9,34 @@ import SwiftUI
 import CoreLocation
 import MapKit
 
+
 struct MapView: View {
     
     @StateObject private var viewModel = MapViewModel()
     @State var userTrackingMode: MapUserTrackingMode = .follow
-    @State var zoom: CGFloat = 10
-    var locations: [Location] {
-        
-      var first =  Location(name: "First sitter", coordinate: CLLocationCoordinate2D(latitude: 37.795162, longitude: -122.402728));
-      var second = Location(name: "Second sitter", coordinate: CLLocationCoordinate2D(latitude: 37.7897, longitude: -122.3972))
-        
-        return [first, second]
-    }
-    
+    @State var zoom: CGFloat = 30
+ 
+//    var locations: [Location] {
+//
+//      var first =  Location(name: "First sitter", coordinate: CLLocationCoordinate2D(latitude: 37.795162, longitude: -122.402728), post: Post(name: "Meggie", phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_1", zipcode: 97123, price: 25, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price."));
+//      var second = Location(name: "Second sitter", coordinate: CLLocationCoordinate2D(latitude: 37.7897, longitude: -122.3972), post: Post(name: "John", phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_1", zipcode: 97123, price: 25, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price."))
+//
+//        return [first, second]
+//    }
+//
     var body: some View {
         
         VStack{
             
             Map(coordinateRegion: $viewModel.mapRegion,
                 interactionModes: .all,
-                showsUserLocation: true, userTrackingMode: $userTrackingMode, annotationItems: locations
-            ){location in
-                MapAnnotation(coordinate: location.coordinate) {
+                showsUserLocation: true, userTrackingMode: $userTrackingMode, annotationItems: PetSitterController.shared.petsitters
+            ){petsitter in
+                MapAnnotation(coordinate: petsitter.location.coordinate) {
                     NavigationLink {
-                        PostDetailView()
-                        Text(location.name ?? "")
+                       //MARK: -   will it work that way or should I make constant???
+                        PostDetailView(post: petsitter)
+                        //Text(petsitter.name ?? "")
                     } label: {
                         Circle()
                             .stroke(.red, lineWidth: 3)
@@ -49,7 +52,7 @@ struct MapView: View {
             }
             
             Slider(value: $zoom,
-                         in: 0.01...10,
+                         in: 0.01...1,
                          minimumValueLabel: Image(systemName: "plus.circle"),
                          maximumValueLabel: Image(systemName: "minus.circle"), label: {})
                     .padding(.horizontal)
