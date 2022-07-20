@@ -75,14 +75,10 @@ private extension PetSitterCreatingPostView {
         
             
             TextEditor(text: $postBodyText)
-//            .font(.custom(
-//                   "San Francisco",
-//
-//                   fixedSize: 17))
-            .font(.system(size: 17, weight: .ultraLight,design: .default))
-                .foregroundColor(.gray)
-                .frame(minHeight: 250, alignment: .leading)
-                .multilineTextAlignment(.leading)
+            .font(.system(size: 17, weight:.ultraLight,design: .default))
+            .foregroundColor(.gray)
+            .frame(minHeight: 250, alignment: .leading)
+            .multilineTextAlignment(.leading)
         
     }
     
