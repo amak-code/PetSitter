@@ -43,8 +43,13 @@ struct PostDetailView: View {
                 Text("Email: \(post.email)")
                     .font(.system(size: 20, weight: .bold, design: .default))
                 Link("Phone number : \( post.phone)", destination: URL(string: "tel://\(post.phone)")!)
-               // Text("Phone number : \( post.phone)")
                     .font(.system(size: 20, weight: .bold, design: .default))
+//                if let url = URL(string: "tel://\(post.phone)"){
+//                    UIApplication.shared.open(url)
+//                }
+               // Text("Phone number : \( post.phone)")
+               
+                  
             }
             Spacer()
           }
