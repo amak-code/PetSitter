@@ -35,7 +35,7 @@ struct MapView: View {
                 MapAnnotation(coordinate: petsitter.location.coordinate) {
                     NavigationLink {
                        //MARK: -   will it work that way or should I make constant???
-                        PostDetailView(post: petsitter)
+                        PostDetailView(petSitter: petsitter)
                         //Text(petsitter.name ?? "")
                     } label: {
                         Circle()

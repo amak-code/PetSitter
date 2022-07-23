@@ -10,52 +10,60 @@ import MapKit
 
 struct SearchResultsListView: View {
     
-    init(){
-           UITableView.appearance().backgroundColor = .clear
-       }
-    var posts:[Post] = PetSitterController.shared.petsitters
+    @ObservedObject var postViewModel = PostListViewModel()
+//    init(){
+//           UITableView.appearance().backgroundColor = .clear
+//       }
+//    var posts:[Post] = PetSitterController.shared.petsitters
     
     var body: some View {
         
-        List(posts, id: \.id) {petSitter in
+        List(postViewModel.posts, id: \.id) {petSitter in
             
-            HStack{
-                Image(petSitter.picture ?? "figure.walk")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80, height: 90)
-                    .cornerRadius(4)
-                    .padding(3)
-                    .background(.yellow)
+            NavigationLink(destination: PostDetailView(petSitter: petSitter), label: {
                 
-                VStack(alignment: .leading, spacing: 3){
+                
+                HStack{
+                    Image(petSitter.picture ?? "figure.walk")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 80, height: 90)
+                        .cornerRadius(4)
+                        .padding(.vertical)
+                    // .background(.yellow)
                     
-                    HStack {
+                    VStack(alignment: .leading, spacing: 3){
                         
-                        Text("FirstName")
+                        HStack {
+                            
+                            Text(petSitter.nameFirst)
+                            
+                                .font(.system(size: 17, weight: .semibold))
+                            Text(petSitter.nameLast)
+                                .font(.system(size: 17, weight: .semibold))
+                            Label("\(petSitter.likesCount)", systemImage: "heart")
+                            
+                        }
+                        Text("\(petSitter.price) $")
+                            .font(.subheadline)
+                            .font(.system(size: 15, weight: .semibold))
+                        Text("Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself ")
+                            .font(.system(size: 12, weight: .light))
+                            .lineLimit(4)
+                            .minimumScaleFactor(0.5)
                         
-                            .font(.system(size: 17, weight: .semibold))
-                        Text("Last Name")
-                            .font(.system(size: 17, weight: .semibold))
-                    }
-                    Text("Price25$")
-                        .font(.subheadline)
-                        .font(.system(size: 15, weight: .semibold))
-                    Text("Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself ")
-                        .font(.system(size: 12, weight: .light))
-                        .lineLimit(4)
-                        .minimumScaleFactor(0.5)
+                        
+                    }//VSTAck
                     
                     
-                }//VSTAck
+                    
+                }//Hstack
                 
-                
-                
-            }//Hstack
+            })//NavigationLink
           
         }
         .listStyle(.plain)
-        .navigationTitle("Results of your search")
+       // .navigationTitle("Results of your search")
         
     }
 }

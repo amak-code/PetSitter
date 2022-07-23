@@ -6,13 +6,21 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct PetSitterCreatingPostView: View {
+    
+    var petSitter: Post?
+    
+  @ObservedObject var postViewModel = PostListViewModel()
     
     @State var postFirstNameText: String = ""
     @State var postLastNameText: String = ""
     @State var postPrice: String = ""
     @State var postZipCode: String = ""
+    @State var postEmail: String = ""
+    @State var postPhone: String = ""
+    @State var postPicture: String = ""
     @State var postBodyText = "Write something about yourself"
     
     init(){
@@ -54,7 +62,9 @@ private extension PetSitterCreatingPostView {
                 .keyboardType(.namePhonePad)
             TextField("Price per hour for your service", text: $postPrice)
             TextField("Your zipcode", text: $postZipCode)
-            
+            TextField("Your email", text: $postEmail)
+            TextField("Your phone", text: $postPhone)
+            TextField("Your picture", text: $postPicture)
             postTextEditorField
                       
            
@@ -95,6 +105,16 @@ private extension PetSitterCreatingPostView {
         }
     }
     
-    
+    func prepareForCreatePost(firstName: String, lastName: String, likes: Int, price: Int
+                              , zipCode: String, email: String, phone: String, picture: String?, bodyText: String){
+        
+        
+        
+        let postPicture = (picture != nil) ? picture : "figure.walk"
+       
+        
+        let post = Post(nameFirst: firstName, nameLast: lastName, likesCount:likes , phone: phone, email: email, picture: postPicture, zipcode: zipCode, price: price, textPost: phone, location: Location(coordinate: CLLocationCoordinate2D()))
+        
+    }
     
 }

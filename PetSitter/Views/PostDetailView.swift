@@ -10,9 +10,9 @@ import MapKit
 
 struct PostDetailView: View {
     
-    var post: Post
+    var petSitter: Post
     
-   // @ObservedObject var postViewModel = PostListViewModel()
+   //@ObservedObject var postViewModel = PostListViewModel()
 
     
     var body: some View {
@@ -24,26 +24,40 @@ struct PostDetailView: View {
 //            .edgesIgnoringSafeArea(.all)
 
           VStack {
-              if let picture = post.picture {
+              if let picture = petSitter.picture {
                   Image(picture)
                           .resizable()
                           .scaledToFit()
-                          .frame(width: 260, height: 250, alignment: .leading)
+                          .cornerRadius(12)
+                          .frame(height: 250, alignment: .leading)
+                          //.padding()
               } else {
                  Image("no_picture")
               }
             VStack(alignment: .leading, spacing: 30) {
-                
-            Text(post.name)
-                        .font(.largeTitle)
+            
+                HStack {
+                    
+                    Text(petSitter.nameFirst)
+                        .font(.title2)
                         .fontWeight(.bold)
- 
-              Text("Price: \(post.price) $")
-                    .font(.system(size: 20, weight: .bold, design: .default))
-                Text("Email: \(post.email)")
-                    .font(.system(size: 20, weight: .bold, design: .default))
-                Link("Phone number : \( post.phone)", destination: URL(string: "tel://\(post.phone)")!)
-                    .font(.system(size: 20, weight: .bold, design: .default))
+                    
+                    Text(petSitter.nameLast)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.trailing)
+                    
+                    Label("\(petSitter.likesCount)", systemImage: "heart")
+                }
+              Text("Price for pet sitting per hour: \(petSitter.price) $")
+                    .font(.system(size:17, weight: .bold, design: .default))
+                Text("About myself: \(petSitter.textPost)")
+                  //  .multilineTextAlignment(.center)
+                
+                Text("Email: \(petSitter.email)")
+                    .font(.system(size:20, weight: .regular, design: .default))
+                Link("Phone number : \( petSitter.phone)", destination: URL(string: "tel://\(petSitter.phone)")!)
+                    .font(.system(size: 20, weight: .regular, design: .default))
 //                if let url = URL(string: "tel://\(post.phone)"){
 //                    UIApplication.shared.open(url)
 //                }
@@ -62,7 +76,8 @@ struct PostDetailView: View {
 struct PostDetailView_Previews: PreviewProvider {
     static var previews: some View {
         
-        PostDetailView(post: Post(name: "Meggie", phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_2", zipcode: 97123, price: 25, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price.", location: Location(coordinate: CLLocationCoordinate2D(latitude: 37.795162, longitude: -122.402728))))
+//        PostDetailView(petSitter: Post(nameFirst: "Meggie", nameLast: "Johns", phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_2", zipcode: 97123, price: 25, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price.", location: Location(coordinate: CLLocationCoordinate2D(latitude: 37.795162, longitude: -122.402728))))
+        PostDetailView(petSitter: PetSitterController.shared.petsitters.first!)
     }
 }
 

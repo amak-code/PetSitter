@@ -14,16 +14,19 @@ struct SearchView: View {
        }
     
     var body: some View {
-        Form{
-            
-            general
+       
+        
+        VStack{
+            Form{
+
+                general
+
+            }//Form
+           //don't forget to put back button to the form
             searchButton
-            
-        }//Form
-        .navigationTitle("Search your pet sitter")
+                .offset(x: 120, y: -390)
+        }
         .background(.yellow)
-        
-        
         
         
         
@@ -63,16 +66,32 @@ private extension SearchView {
     
     
     var searchButton: some View {
-        Button{
-            
-        }label: {
-            HStack {
-                    Spacer()
+//        Button{
+//
+//        }label: {
+//            HStack {
+//                    Spacer()
+//                Text("Search")
+//                    .font(.system(size: 25, weight: .bold, design: .rounded))
+//                    Spacer()
+//                  }
+//        }
+        Button(action: {
+        }) {
+            NavigationLink(destination: SearchResultsListView()) {
                 Text("Search")
                     .font(.system(size: 25, weight: .bold, design: .rounded))
+                    .padding(10)
+                    .background(.white)
+                    .foregroundColor(.blue)
+                    .cornerRadius(12)
                     Spacer()
-                  }
+                
+                
+            }
         }
+        .padding()
+        
     }
     
 }

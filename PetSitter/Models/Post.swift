@@ -11,12 +11,15 @@ import UIKit
 struct Post: Identifiable {
    
     let id = UUID()
-    var name: String
+    var nameFirst: String
+    var nameLast: String
+    var likesCount: Int = 0
     var phone: String
     var email: String
     var picture: String?
-    var zipcode: Int
+    var zipcode: String
     var price: Int
     var textPost: String
+    var date:Date = Date()
     var location: Location
 }
