@@ -20,11 +20,13 @@ struct SearchView: View {
             Form{
 
                 general
-
+                
+                searchButton
+                
             }//Form
-           //don't forget to put back button to the form
-            searchButton
-                .offset(x: 120, y: -390)
+          
+            
+                
         }
         .background(.yellow)
         
@@ -67,7 +69,7 @@ private extension SearchView {
     
     var searchButton: some View {
 //        Button{
-//
+//            NavigationLink(LocalizedStringKey, destination: SearchResultsListView(posts: PostListViewModel.shared.posts))
 //        }label: {
 //            HStack {
 //                    Spacer()
@@ -78,7 +80,7 @@ private extension SearchView {
 //        }
         Button(action: {
         }) {
-            NavigationLink(destination: SearchResultsListView()) {
+            NavigationLink(destination: SearchResultsListView(posts: PostListViewModel.shared.posts)) {
                 Text("Search")
                     .font(.system(size: 25, weight: .bold, design: .rounded))
                     .padding(10)
@@ -86,8 +88,8 @@ private extension SearchView {
                     .foregroundColor(.blue)
                     .cornerRadius(12)
                     Spacer()
-                
-                
+
+
             }
         }
         .padding()

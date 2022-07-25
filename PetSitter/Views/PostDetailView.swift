@@ -24,16 +24,14 @@ struct PostDetailView: View {
 //            .edgesIgnoringSafeArea(.all)
 
           VStack {
-              if let picture = petSitter.picture {
-                  Image(picture)
+            
+              Image(petSitter.picture)
                           .resizable()
                           .scaledToFit()
                           .cornerRadius(12)
                           .frame(height: 250, alignment: .leading)
                           //.padding()
-              } else {
-                 Image("no_picture")
-              }
+           
             VStack(alignment: .leading, spacing: 30) {
             
                 HStack {

@@ -10,21 +10,20 @@ import MapKit
 
 struct SearchResultsListView: View {
     
-    @ObservedObject var postViewModel = PostListViewModel()
+  //  @ObservedObject  var postViewModel: PostListViewModel
 //    init(){
 //           UITableView.appearance().backgroundColor = .clear
 //       }
-//    var posts:[Post] = PetSitterController.shared.petsitters
+    var posts:[Post]
     
     var body: some View {
         
-        List(postViewModel.posts, id: \.id) {petSitter in
+        List(posts, id: \.id) {petSitter in
             
             NavigationLink(destination: PostDetailView(petSitter: petSitter), label: {
-                
-                
+    
                 HStack{
-                    Image(petSitter.picture ?? "figure.walk")
+                    Image(petSitter.picture)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 80, height: 90)
@@ -70,6 +69,6 @@ struct SearchResultsListView: View {
 
 struct SearchResultsListView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultsListView()
+        SearchResultsListView(posts: PostListViewModel.shared.posts)
     }
 }

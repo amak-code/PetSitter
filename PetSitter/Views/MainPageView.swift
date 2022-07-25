@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MainPageView: View {
+    
+    //@ObservedObject var postViewModel = PostListViewModel()
+    
     var body: some View {
        
         NavigationView{

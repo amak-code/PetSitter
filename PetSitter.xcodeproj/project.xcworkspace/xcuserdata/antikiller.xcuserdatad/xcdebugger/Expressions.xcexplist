@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "closure #1 in PetSitterCreatingPostView.createPostButton.getter:PetSitterCreatingPostView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PetSitterCreatingPostView.prepareForCreatePost(firstName:lastName:price:zipCode:email:phone:picture:bodyText:):PetSitterCreatingPostView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "postViewModel.posts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

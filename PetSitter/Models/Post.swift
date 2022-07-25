@@ -16,7 +16,7 @@ struct Post: Identifiable {
     var likesCount: Int = 0
     var phone: String
     var email: String
-    var picture: String?
+    var picture: String = "sitter_1"
     var zipcode: String
     var price: Int
     var textPost: String
