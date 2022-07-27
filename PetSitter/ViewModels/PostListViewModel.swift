@@ -12,14 +12,17 @@ import MapKit
 class PostListViewModel: ObservableObject {
     
   static var shared = PostListViewModel()
-    
+    init() {
+        loadFromPersistanceStore()
+        updateFilteredPosts()
+    }
 
     
   @Published var posts: [Post] = [
-    Post(nameFirst: "Meggie",nameLast: "Johns", likesCount: 40, phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_2", zipcode: "97123", price: 25, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price.", location: Location(latitude: 37.795162, longitude: -122.402728)),
+    Post(nameFirst: "Meggie",nameLast: "Johns", likesCount: 40, phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_2", zipcode: "97123", price: 45, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price.", location: Location(latitude: 37.795162, longitude: -122.402728)),
    Post(nameFirst: "John", nameLast: "Smith",likesCount: 35, phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_1", zipcode: "97123", price: 35, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price.", location: Location(latitude: 37.7897, longitude: -122.3972))]
     
-    
+    @Published var filteredPosts: [Post] = []
     
     func createPost(post: Post){
         let petsitter = post
@@ -31,6 +34,13 @@ class PostListViewModel: ObservableObject {
     func deletePost(indexSet: IndexSet){
         posts.remove(atOffsets: indexSet)
         saveToPersistanceStore()
+    }
+    
+    
+    func updateFilteredPosts(){
+        filteredPosts = posts.sorted { (post1, post2) -> Bool in
+            return post1.price < post2.price
+        }
     }
     
     //MARK: - PersistanceStore

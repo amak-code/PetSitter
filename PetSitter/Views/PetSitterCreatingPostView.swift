@@ -12,7 +12,7 @@ struct PetSitterCreatingPostView: View {
     
     @State var showDetailView: Bool = false
     
-    @ObservedObject var petSitter: Post
+    var petSitter: Post
     
     //@ObservedObject  var postViewModel: PostListViewModel
     
@@ -113,6 +113,7 @@ private extension PetSitterCreatingPostView {
 
             if showDetailView {
                 
+                //PostListViewModel.shared.loadFromPersistanceStore()
                 if let lastPost = PostListViewModel.shared.posts.last {
                 
                 PostDetailView(petSitter: lastPost ).transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
@@ -139,7 +140,7 @@ private extension PetSitterCreatingPostView {
                             postPicture = ""
                             postZipCode = ""
                             postBodyText = ""
-                           // PostListViewModel.shared.loadFromPersistanceStore()
+                           
                             self.showDetailView = true
                            
                             }

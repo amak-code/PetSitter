@@ -8,15 +8,22 @@
 import SwiftUI
 
 struct SearchView: View {
+    
     @State private var isShowingSearchResultView = false
+    @State var firstName: String = ""
+    @State var lastName: String = ""
+    @State var pricePerHour: String = ""
+    @State var zipCode: String = ""
+    
+    
     init(){
            UITableView.appearance().backgroundColor = .clear
        }
     
     var body: some View {
-       
-        
+            
         VStack{
+            
             Form{
 
                 general
@@ -25,12 +32,8 @@ struct SearchView: View {
                 
             }//Form
           
-            
-                
         }
         .background(.yellow)
-        
-        
         
     }
 }
@@ -46,14 +49,14 @@ private extension SearchView {
     var general: some View {
         
         Section {
-            TextField("First Name", text: .constant(""))
+            TextField("First Name", text: $firstName)
                 .textContentType(.name)
                 .keyboardType(.namePhonePad)
-            TextField("Last Name", text: .constant(""))
+            TextField("Last Name", text: $lastName)
                 .textContentType(.name)
                 .keyboardType(.namePhonePad)
-            TextField("Price per hour", text: .constant(""))
-            TextField("ZipCode", text: .constant(""))
+            TextField("Price per hour up to ", text: $pricePerHour)
+            TextField("ZipCode", text: $zipCode)
             
             
         } header: {
@@ -62,8 +65,7 @@ private extension SearchView {
             Text("Please enter any information about the pet sitter")
         }
         .headerProminence(.increased)
-      
-        
+
     }
     
     
@@ -72,7 +74,6 @@ private extension SearchView {
       
             ZStack {
             
-                
                     Button("Search"){
                         self.isShowingSearchResultView = true
 //                        .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -82,7 +83,7 @@ private extension SearchView {
 //                        .cornerRadius(12)
                     }
                                    
-                NavigationLink(destination: SearchResultsListView(posts: PostListViewModel.shared.posts), isActive: $isShowingSearchResultView){EmptyView()}.buttonStyle(.plain)
+                NavigationLink(destination: SearchResultsListView(firstName: $firstName, lastName: $lastName, pricePerHour: $pricePerHour, zipCode: $zipCode, posts: PostListViewModel.shared.filteredPosts), isActive: $isShowingSearchResultView){EmptyView()}.buttonStyle(.plain)
             
             }.padding()
         

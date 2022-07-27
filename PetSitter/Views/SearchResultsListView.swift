@@ -10,19 +10,30 @@ import MapKit
 
 struct SearchResultsListView: View {
     
-    //postViewModel was added so we could use it inside .onAppear{}
+
+    @Binding var firstName: String
+    @Binding var lastName: String
+    @Binding var pricePerHour: String
+    @Binding var zipCode: String
+    
  //   @ObservedObject  var postViewModel: PostListViewModel
+    var posts:[Post]
+    
+    //var filteredPosts: [Post] = []
     
 //    init(){
 //           UITableView.appearance().backgroundColor = .clear
 //       }
-    var posts:[Post]
+   
+
+    
+    
     
     var body: some View {
         
         VStack {
             
-            List(posts, id: \.id) {petSitter in
+            List(filterListPosts(posts: posts), id: \.id) {petSitter in
                 
                 NavigationLink(destination: PostDetailView(petSitter: petSitter), label: {
                     
@@ -74,8 +85,102 @@ struct SearchResultsListView: View {
     }
 }
 
-struct SearchResultsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchResultsListView(posts: PostListViewModel.shared.posts)
+//struct SearchResultsListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchResultsListView(posts: PostListViewModel.shared.posts)
+//    }
+//}
+
+extension SearchResultsListView {
+    
+    func filterListPosts(posts: [Post]) -> [Post] {
+        
+      //  var filteredPosts: [Post] = []
+        //working with cases when user didn't input all the data
+        
+        if firstName == "" && lastName == "" && pricePerHour == "" && zipCode == "" {
+            
+            return posts
+        }
+        
+        var filteredPosts = posts.filter({ (post) in
+            
+            if firstName != "" && lastName != "" && pricePerHour != "" && zipCode != "" {
+                
+                return post.nameFirst == firstName && post.nameLast == lastName && post.price <= Int(pricePerHour) ?? 100000 && post.zipcode == zipCode
+            }
+            
+           else if firstName != "" && lastName != "" && pricePerHour != ""{
+                
+                return post.nameFirst == firstName && post.nameLast == lastName && post.price <= Int(pricePerHour) ?? 100000
+            }
+            
+            
+            else if firstName != "" && lastName != "" && zipCode != "" {
+                return post.nameFirst == firstName && post.nameLast == lastName && post.zipcode == zipCode
+            }
+            
+            else if firstName != "" && lastName != "" {
+                return post.nameFirst == firstName && post.nameLast == lastName
+            }
+            
+            else if   lastName != "" && pricePerHour != "" {
+                
+                return post.nameLast == lastName && post.price <= Int(pricePerHour) ?? 100000
+                
+            }
+            
+            else if  lastName != "" && pricePerHour != "" && zipCode != "" {
+                
+                return post.nameLast == lastName && post.price <= Int(pricePerHour) ?? 100000 && post.zipcode == zipCode
+            }
+            
+            
+           else if firstName != "" && pricePerHour != "" && zipCode != "" {
+                
+                return post.nameFirst == firstName && post.price <= Int(pricePerHour) ?? 100000 && post.zipcode == zipCode
+            }
+            
+            else if pricePerHour != "" && zipCode != "" {
+                 
+                 return post.price <= Int(pricePerHour) ?? 100000 && post.zipcode == zipCode
+             }
+            
+           else if firstName != "" && zipCode != "" {
+                
+                return post.nameFirst == firstName && post.zipcode == zipCode
+            }
+            
+           else if firstName != "" && pricePerHour != "" {
+                
+                return post.nameFirst == firstName && post.price <= Int(pricePerHour) ?? 100000
+            }
+            
+          else if lastName != "" && zipCode != "" {
+                
+                return post.nameLast == lastName && post.zipcode == zipCode
+            }
+            
+            else if zipCode != "" {
+                  
+                  return post.zipcode == zipCode
+              }
+            
+            else if firstName != ""  {
+                 
+                 return post.nameFirst == firstName
+             }
+            
+            else if pricePerHour != "" {
+                 
+                 return post.price <= Int(pricePerHour) ?? 100000
+             }
+           
+                return post.nameLast == lastName
+                
+        })
+        
+        return filteredPosts
     }
+    
 }
