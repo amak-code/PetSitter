@@ -10,6 +10,7 @@ import SwiftUI
 struct MainPageView: View {
     
     //@ObservedObject var postViewModel = PostListViewModel()
+    var petSitter: Post
     
     var body: some View {
        
@@ -47,7 +48,7 @@ struct MainPageView: View {
                         
                         Button(action: {
                          }) {
-                             NavigationLink(destination: PetSitterCreatingPostView()) {
+                             NavigationLink(destination: PetSitterCreatingPostView(petSitter: petSitter)) {
                              Text("I'm a pet sitter")
                                      .padding(30)
                                      .background(.white)
@@ -72,12 +73,12 @@ struct MainPageView: View {
            
             
         }//navigationview
-        
+        .onAppear(perform: PostListViewModel.shared.loadFromPersistanceStore)
     }
 }
 
 struct MainPageView_Previews: PreviewProvider {
     static var previews: some View {
-        MainPageView()
+        MainPageView(petSitter: PostListViewModel.shared.posts.first!)
     }
 }

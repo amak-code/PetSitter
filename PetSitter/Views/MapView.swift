@@ -30,7 +30,7 @@ struct MapView: View {
             
             Map(coordinateRegion: $viewModel.mapRegion,
                 interactionModes: .all,
-                showsUserLocation: true, userTrackingMode: $userTrackingMode, annotationItems: PetSitterController.shared.petsitters
+                showsUserLocation: true, userTrackingMode: $userTrackingMode, annotationItems: PostListViewModel.shared.posts
             ){petsitter in
                 MapAnnotation(coordinate: petsitter.location.coordinate) {
                     NavigationLink {
@@ -65,6 +65,9 @@ struct MapView: View {
         }//Vstack
         .font(.title)
     }
+    
+    
+    
 }
 
 struct MapView_Previews: PreviewProvider {

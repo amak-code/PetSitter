@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    
+    @State private var isShowingSearchResultView = false
     init(){
            UITableView.appearance().backgroundColor = .clear
        }
@@ -68,31 +68,23 @@ private extension SearchView {
     
     
     var searchButton: some View {
-//        Button{
-//            NavigationLink(LocalizedStringKey, destination: SearchResultsListView(posts: PostListViewModel.shared.posts))
-//        }label: {
-//            HStack {
-//                    Spacer()
-//                Text("Search")
-//                    .font(.system(size: 25, weight: .bold, design: .rounded))
-//                    Spacer()
-//                  }
-//        }
-        Button(action: {
-        }) {
-            NavigationLink(destination: SearchResultsListView(posts: PostListViewModel.shared.posts)) {
-                Text("Search")
-                    .font(.system(size: 25, weight: .bold, design: .rounded))
-                    .padding(10)
-                    .background(.white)
-                    .foregroundColor(.blue)
-                    .cornerRadius(12)
-                    Spacer()
-
-
-            }
-        }
-        .padding()
+        
+      
+            ZStack {
+            
+                
+                    Button("Search"){
+                        self.isShowingSearchResultView = true
+//                        .font(.system(size: 20, weight: .bold, design: .rounded))
+//                        .padding(10)
+//                        .background(.white)
+//                        .foregroundColor(.blue)
+//                        .cornerRadius(12)
+                    }
+                                   
+                NavigationLink(destination: SearchResultsListView(posts: PostListViewModel.shared.posts), isActive: $isShowingSearchResultView){EmptyView()}.buttonStyle(.plain)
+            
+            }.padding()
         
     }
     

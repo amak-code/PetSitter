@@ -7,10 +7,12 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
-struct Post: Identifiable {
+
+struct Post: Identifiable, Codable {
    
-    let id = UUID()
+    var id = UUID()
     var nameFirst: String
     var nameLast: String
     var likesCount: Int = 0
@@ -22,4 +24,7 @@ struct Post: Identifiable {
     var textPost: String
     var date:Date = Date()
     var location: Location
+    
+
 }
+

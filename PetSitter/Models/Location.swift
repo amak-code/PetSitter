@@ -8,10 +8,15 @@
 import Foundation
 import CoreLocation
 
-struct Location: Identifiable {
+struct Location: Identifiable, Codable {
+    
     let id = UUID()
-    let coordinate: CLLocationCoordinate2D
+    let latitude: Double
+    let longitude: Double
+    var coordinate: CLLocationCoordinate2D{
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+   
     
-    
-    
+
 }
