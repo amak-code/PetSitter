@@ -25,7 +25,7 @@ struct PostDetailView: View {
 
           VStack {
             
-              Image(petSitter.picture)
+              Image(uiImage: petSitter.picture.toImage())
                           .resizable()
                           .scaledToFit()
                           .cornerRadius(12)

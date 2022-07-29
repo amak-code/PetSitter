@@ -27,8 +27,6 @@ struct SearchResultsListView: View {
    
 
     
-    
-    
     var body: some View {
         
         VStack {
@@ -38,7 +36,7 @@ struct SearchResultsListView: View {
                 NavigationLink(destination: PostDetailView(petSitter: petSitter), label: {
                     
                     HStack{
-                        Image(petSitter.picture)
+                        Image(uiImage: petSitter.picture.toImage())
                             .resizable()
                             .scaledToFill()
                             .frame(width: 80, height: 90)

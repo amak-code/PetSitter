@@ -14,7 +14,7 @@ class PostListViewModel: ObservableObject {
   static var shared = PostListViewModel()
     init() {
         loadFromPersistanceStore()
-        updateFilteredPosts()
+       // updateFilteredPosts()
     }
 
     

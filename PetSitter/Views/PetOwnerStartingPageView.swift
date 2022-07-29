@@ -41,9 +41,9 @@ struct PetOwnerStartingPageView: View {
                     }) {
                         NavigationLink(destination: MapView()) {
                             Text("Show sitters around me")
-                                .padding(10)
+                                .padding(5)
                                 .background(.yellow)
-                                .font(.system(size: 35, weight: .bold, design: .rounded))
+                                .font(.system(size: 34, weight: .bold, design: .rounded))
                                 .foregroundColor(.white)
                                 .cornerRadius(12)
                                 .clipShape(Capsule())
@@ -58,9 +58,9 @@ struct PetOwnerStartingPageView: View {
                     }) {
                         NavigationLink(destination: SearchView()) {
                             Text("I want to do a search")
-                                .padding(15)
-                                .padding(.leading, 15)
-                                .padding(.trailing, 15)
+                                .padding(10)
+                                .padding(.leading, 10)
+                                .padding(.trailing, 10)
                                 .background(.yellow)
                                 .font(.system(size: 35, weight: .bold, design: .rounded))
                                 .foregroundColor(.white)

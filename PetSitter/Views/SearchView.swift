@@ -83,7 +83,7 @@ private extension SearchView {
 //                        .cornerRadius(12)
                     }
                                    
-                NavigationLink(destination: SearchResultsListView(firstName: $firstName, lastName: $lastName, pricePerHour: $pricePerHour, zipCode: $zipCode, posts: PostListViewModel.shared.filteredPosts), isActive: $isShowingSearchResultView){EmptyView()}.buttonStyle(.plain)
+                NavigationLink(destination: SearchResultsListView(firstName: $firstName, lastName: $lastName, pricePerHour: $pricePerHour, zipCode: $zipCode, posts: PostListViewModel.shared.posts), isActive: $isShowingSearchResultView){EmptyView()}.buttonStyle(.plain)
             
             }.padding()
         

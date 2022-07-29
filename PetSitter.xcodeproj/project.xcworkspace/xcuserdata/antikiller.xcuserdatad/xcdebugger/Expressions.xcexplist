@@ -3,7 +3,32 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in PetSitterCreatingPostView.createPostButton.getter:PetSitterCreatingPostView.swift">
+         contextName = "PetSitterCreatingPostView.petSitter.getter:PetSitterCreatingPostView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PostListViewModel.loadFromPersistanceStore():PostListViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "String(decoding: data, as: UTF8.self)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PostListViewModel.init():PostListViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.posts[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchResultsListView.filterListPosts(posts:):SearchResultsListView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in PetSitterCreatingPostView.prepareForCreatePost(firstName:lastName:price:zipCode:email:phone:picture:bodyText:):PetSitterCreatingPostView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in PetSitterCreatingPostView.createPostButton.getter:PetSitterCreatingPostView.swift">
       </ContextState>
       <ContextState
          contextName = "PetSitterCreatingPostView.prepareForCreatePost(firstName:lastName:price:zipCode:email:phone:picture:bodyText:):PetSitterCreatingPostView.swift">
@@ -12,6 +37,28 @@
                value = "postViewModel.posts">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PostListViewModel.saveToPersistanceStore():PostListViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "String(decoding: data, as: UTF8.self)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in PostDetailView.body.getter:PostDetailView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "picture">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in PetSitterCreatingPostView.createPostButton.getter:PetSitterCreatingPostView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PetSitterCreatingPostView.postLastNameText.getter:PetSitterCreatingPostView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

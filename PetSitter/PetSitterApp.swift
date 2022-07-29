@@ -11,7 +11,7 @@ import SwiftUI
 struct PetSitterApp: App {
     var body: some Scene {
         WindowGroup {
-            MainPageView(petSitter: PostListViewModel.shared.posts.first!)
+            MainPageView()
         }
     }
 }
