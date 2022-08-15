@@ -40,32 +40,34 @@ struct PetOwnerStartingPageView: View {
                     Button(action: {
                     }) {
                         NavigationLink(destination: MapView()) {
-                            Text("Show sitters around me")
-                                .padding(5)
+                            Text("Show sitters near me")
+                                .padding(10)
                                 .background(.yellow)
                                 .font(.system(size: 34, weight: .bold, design: .rounded))
                                 .foregroundColor(.white)
                                 .cornerRadius(12)
                                 .clipShape(Capsule())
-                            
+                                .frame(width: 400, height: 50, alignment: .center)
                             
                         }
                     }
                     .padding()
-                    
-
+                        
+                    Text("--    OR   --")
+                        .foregroundColor(.white)
                     Button(action: {
                     }) {
                         NavigationLink(destination: SearchView()) {
                             Text("I want to do a search")
                                 .padding(10)
-                                .padding(.leading, 10)
-                                .padding(.trailing, 10)
+                                .padding(.leading, 5)
+                                .padding(.trailing, 5)
                                 .background(.yellow)
-                                .font(.system(size: 35, weight: .bold, design: .rounded))
+                                .font(.system(size: 34, weight: .bold, design: .rounded))
                                 .foregroundColor(.white)
                                 .cornerRadius(12)
                                 .clipShape(Capsule())
+                                .frame(width: 400, height: 50, alignment: .center)
                             
                             
                             

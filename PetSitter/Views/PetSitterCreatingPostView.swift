@@ -45,6 +45,11 @@ struct PetSitterCreatingPostView: View {
             
             //Spacer()
         }
+        .alert(Text("Important message"), isPresented: $showAlert, actions: {
+            Button("OK", role: .cancel, action: {})
+        }, message: {
+            Text("Thank you for creating a post. It will expire in 30 days.")
+        })
         .background(.yellow)
         
         
@@ -71,13 +76,16 @@ private extension PetSitterCreatingPostView {
                 .keyboardType(.namePhonePad)
                 .disableAutocorrection(true)
             TextField("Price per hour for your service", text: $postPrice)
+                .keyboardType(.decimalPad)
             TextField("Your zipcode", text: $postZipCode)
+                .keyboardType(.decimalPad)
             
             TextField("Your email", text: $postEmail)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
             
             TextField("Your phone", text: $postPhone)
+                .keyboardType(.decimalPad)
             
             ZStack(alignment: .trailing) {
                 
@@ -139,7 +147,7 @@ private extension PetSitterCreatingPostView {
                     group.enter()
                     
                     DispatchQueue.main.async {
-                        
+                        hideKeyboard()
                         prepareForCreatePost(firstName: postFirstNameText, lastName: postLastNameText, price: Int(postPrice) ?? 0, zipCode: postZipCode, email: postEmail, phone: postPhone, picture: imageSelected.toJpegString(compressionQuality: 0.5) ?? "no_image", bodyText: postBodyText)
                         
                         group.leave()
@@ -148,6 +156,7 @@ private extension PetSitterCreatingPostView {
                     group.notify(queue: .main) {
                         
                         withAnimation {
+                            
                             postFirstNameText = ""
                             postLastNameText = ""
                             postPrice = ""
@@ -157,7 +166,9 @@ private extension PetSitterCreatingPostView {
                             postZipCode = ""
                             postBodyText = ""
                             
+                           
                             self.showDetailView = true
+                           
                             self.showAlert = true
                             
                         }
@@ -170,11 +181,8 @@ private extension PetSitterCreatingPostView {
             }
             
         }//VStack
-        .alert(Text("Important message"), isPresented: $showAlert, actions: {
-            Button("OK", role: .cancel, action: {})
-        }, message: {
-            Text("Thank you for creating a post. It will expire in 30 days.")
-        })
+        
+       
         
         
     }
@@ -249,3 +257,11 @@ extension String {
         return noPicture
     }
 }
+
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif

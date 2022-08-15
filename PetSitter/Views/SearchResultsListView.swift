@@ -101,7 +101,7 @@ extension SearchResultsListView {
             return posts
         }
         
-        var filteredPosts = posts.filter({ (post) in
+        let filteredPosts = posts.filter({ (post) in
             
             if firstName != "" && lastName != "" && pricePerHour != "" && zipCode != "" {
                 

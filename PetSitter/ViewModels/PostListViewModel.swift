@@ -15,8 +15,11 @@ class PostListViewModel: ObservableObject {
     init() {
         loadFromPersistanceStore()
        // updateFilteredPosts()
-        for i in 0 ..< posts.count {
-            deletePost(index: i)
+        if !posts.isEmpty{
+            
+            for i in 0 ..< posts.count {
+                deletePost(index: i)
+            }
         }
     }
 
