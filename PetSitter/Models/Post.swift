@@ -12,7 +12,7 @@ import CoreLocation
 
 struct Post: Identifiable, Codable {
    
-    let id = UUID()
+    var id = UUID().uuidString
     var nameFirst: String
     var nameLast: String
     var likesCount: Int = 0

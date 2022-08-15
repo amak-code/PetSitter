@@ -3,22 +3,4 @@
    uuid = "E6C9C7A2-B5D2-411D-89C7-80CF6CFCBA5A"
    type = "1"
    version = "2.0">
-   <Breakpoints>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7E3E17E3-C179-44F5-BD96-5B13FBA377C2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PetSitter/Views/PetSitterCreatingPostView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "prepareForCreatePost(firstName:lastName:price:zipCode:email:phone:picture:bodyText:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-   </Breakpoints>
 </Bucket>

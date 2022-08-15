@@ -10,7 +10,7 @@ import CoreLocation
 
 struct Location: Identifiable, Codable {
     
-    let id = UUID()
+    var id = UUID().uuidString
     let latitude: Double
     let longitude: Double
     var coordinate: CLLocationCoordinate2D{

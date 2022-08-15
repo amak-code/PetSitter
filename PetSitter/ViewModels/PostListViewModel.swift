@@ -15,6 +15,9 @@ class PostListViewModel: ObservableObject {
     init() {
         loadFromPersistanceStore()
        // updateFilteredPosts()
+        for i in 0 ..< posts.count {
+            deletePost(index: i)
+        }
     }
 
     
@@ -31,8 +34,16 @@ class PostListViewModel: ObservableObject {
         
     }
     
-    func deletePost(indexSet: IndexSet){
-        posts.remove(atOffsets: indexSet)
+    func deletePost(index: Int){
+        let post = posts[index]
+        let postDate = post.date
+        let expirationDate = postDate.addingTimeInterval(86400)
+        let currentDate = Date()
+        let range = postDate...currentDate
+        if range.contains(expirationDate){
+            posts.remove(at: index)
+        }
+        
         saveToPersistanceStore()
     }
     

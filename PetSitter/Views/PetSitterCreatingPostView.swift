@@ -15,7 +15,7 @@ struct PetSitterCreatingPostView: View {
     // @State var changeProfileImage = false
     @State var openCameraRoll = false
     @State var imageSelected = UIImage()
-    
+    @State var showAlert: Bool = false
     @State var petSitter: Post?
     
     //@ObservedObject  var postViewModel: PostListViewModel
@@ -72,6 +72,8 @@ private extension PetSitterCreatingPostView {
             TextField("Your zipcode", text: $postZipCode)
             
             TextField("Your email", text: $postEmail)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
             
             TextField("Your phone", text: $postPhone)
             
@@ -99,7 +101,7 @@ private extension PetSitterCreatingPostView {
         } header: {
             Text("Start creating your post")
         } footer: {
-            Text("Please fill out all the fields")
+            Text("Please fill out all the fields.")
         }
         //  .headerProminence(.increased)
         //        .onAppear{
@@ -149,7 +151,9 @@ private extension PetSitterCreatingPostView {
                     group.enter()
                     
                     DispatchQueue.main.async {
+                        self.showAlert = true
                         prepareForCreatePost(firstName: postFirstNameText, lastName: postLastNameText, price: Int(postPrice) ?? 0, zipCode: postZipCode, email: postEmail, phone: postPhone, picture: imageSelected.toJpegString(compressionQuality: 0.5) ?? "no_image", bodyText: postBodyText)
+                        
                         group.leave()
                     }
                     
@@ -165,17 +169,18 @@ private extension PetSitterCreatingPostView {
                             postZipCode = ""
                             postBodyText = ""
                             
+                          
                             self.showDetailView = true
                             
                         }
                     }
                     
-                }
-                //                {
-                //                    Text("Create a post")
-                //                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                //
-                //                }//Button
+                }  .alert(Text("Important message"), isPresented: $showAlert, actions: {
+                    Button("OK", role: .cancel, action: {})
+                }, message: {
+                    Text("Thank you for creating a post. It will expire in 30 days.")
+                })
+             
                 
             }
             

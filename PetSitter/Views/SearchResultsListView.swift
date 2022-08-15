@@ -11,10 +11,10 @@ import MapKit
 struct SearchResultsListView: View {
     
 
-    @Binding var firstName: String
-    @Binding var lastName: String
-    @Binding var pricePerHour: String
-    @Binding var zipCode: String
+    var firstName: String
+    var lastName: String
+    var pricePerHour: String
+    var zipCode: String
     
  //   @ObservedObject  var postViewModel: PostListViewModel
     var posts:[Post]
