@@ -52,9 +52,11 @@ private extension SearchView {
             TextField("First Name", text: $firstName)
                 .textContentType(.name)
                 .keyboardType(.namePhonePad)
+                .disableAutocorrection(true)
             TextField("Last Name", text: $lastName)
                 .textContentType(.name)
                 .keyboardType(.namePhonePad)
+                .disableAutocorrection(true)
             TextField("Price per hour up to ", text: $pricePerHour)
             TextField("ZipCode", text: $zipCode)
             

@@ -65,9 +65,11 @@ private extension PetSitterCreatingPostView {
             TextField("Your first Name", text: $postFirstNameText)
                 .textContentType(.name)
                 .keyboardType(.namePhonePad)
+                .disableAutocorrection(true)
             TextField("Your last Name", text: $postLastNameText)
                 .textContentType(.name)
                 .keyboardType(.namePhonePad)
+                .disableAutocorrection(true)
             TextField("Price per hour for your service", text: $postPrice)
             TextField("Your zipcode", text: $postZipCode)
             
@@ -103,22 +105,7 @@ private extension PetSitterCreatingPostView {
         } footer: {
             Text("Please fill out all the fields.")
         }
-        //  .headerProminence(.increased)
-        //        .onAppear{
-        //            if let petSitter = petSitter {
-        //                postFirstNameText = petSitter.nameFirst
-        //                postLastNameText = petSitter.nameLast
-        //                postPrice = String(petSitter.price)
-        //                postPhone = petSitter.phone
-        //                postEmail = petSitter.email
-        //                postPicture = petSitter.picture
-        //                postZipCode = petSitter.zipcode
-        //                postBodyText = petSitter.textPost
-        //
-        //
-        //
-        //            }
-        //        }
+
         
     }
     
@@ -138,11 +125,12 @@ private extension PetSitterCreatingPostView {
         VStack {
             
             if showDetailView {
-                
+             
                 //PostListViewModel.shared.loadFromPersistanceStore()
                 if let lastPost = petSitter {
-                    
+                   
                     PostDetailView(petSitter: lastPost ).transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
+                    
                 }
             } else {
                 
@@ -151,7 +139,7 @@ private extension PetSitterCreatingPostView {
                     group.enter()
                     
                     DispatchQueue.main.async {
-                        self.showAlert = true
+                        
                         prepareForCreatePost(firstName: postFirstNameText, lastName: postLastNameText, price: Int(postPrice) ?? 0, zipCode: postZipCode, email: postEmail, phone: postPhone, picture: imageSelected.toJpegString(compressionQuality: 0.5) ?? "no_image", bodyText: postBodyText)
                         
                         group.leave()
@@ -169,22 +157,24 @@ private extension PetSitterCreatingPostView {
                             postZipCode = ""
                             postBodyText = ""
                             
-                          
                             self.showDetailView = true
+                            self.showAlert = true
                             
                         }
                     }
+                  
                     
-                }  .alert(Text("Important message"), isPresented: $showAlert, actions: {
-                    Button("OK", role: .cancel, action: {})
-                }, message: {
-                    Text("Thank you for creating a post. It will expire in 30 days.")
-                })
+                }
              
                 
             }
             
         }//VStack
+        .alert(Text("Important message"), isPresented: $showAlert, actions: {
+            Button("OK", role: .cancel, action: {})
+        }, message: {
+            Text("Thank you for creating a post. It will expire in 30 days.")
+        })
         
         
     }
@@ -204,6 +194,7 @@ private extension PetSitterCreatingPostView {
                         
                         PostListViewModel.shared.createPost(post: post)
                         petSitter = post
+                       
                         
                     case .failure(let error):
                         print("smth bad happened ", error)
