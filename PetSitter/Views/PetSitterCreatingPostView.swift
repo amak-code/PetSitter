@@ -198,7 +198,7 @@ private extension PetSitterCreatingPostView {
                 DispatchQueue.main.async {
                     switch res {
                     case .success(let coord):
-                        let post = Post(nameFirst: firstName, nameLast: lastName,  phone: phone, email: email, picture: picture, zipcode: zipCode, price: price, textPost: phone, location: Location(latitude: coord.latitude, longitude: coord.longitude))
+                        let post = Post(nameFirst: firstName, nameLast: lastName,  phone: phone, email: email, picture: picture, zipcode: zipCode, price: price, textPost: bodyText, location: Location(latitude: coord.latitude, longitude: coord.longitude))
                         
                         PostListViewModel.shared.createPost(post: post)
                         petSitter = post

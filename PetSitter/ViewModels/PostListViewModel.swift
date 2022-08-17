@@ -40,7 +40,7 @@ class PostListViewModel: ObservableObject {
     func deletePost(index: Int){
         let post = posts[index]
         let postDate = post.date
-        let expirationDate = postDate.addingTimeInterval(86400)
+        let expirationDate = postDate.addingTimeInterval(8640000)
         let currentDate = Date()
         let range = postDate...currentDate
         if range.contains(expirationDate){

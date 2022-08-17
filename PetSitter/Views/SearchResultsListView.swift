@@ -59,11 +59,15 @@ struct SearchResultsListView: View {
                             Text("\(petSitter.price) $")
                                 .font(.subheadline)
                                 .font(.system(size: 15, weight: .semibold))
-                            Text("Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself Body text: a bit about myself ")
-                                .font(.system(size: 12, weight: .light))
+//                            Text("Phone number: \(petSitter.phone) ")
+//                                .font(.system(size: 12, weight: .light))
+//                                .lineLimit(4)
+//                                .minimumScaleFactor(0.5)
+                            Text("About myself: \(petSitter.textPost) ")
+                                .font(.system(size: 14, weight: .light))
                                 .lineLimit(4)
                                 .minimumScaleFactor(0.5)
-                            
+                                
                             
                         }//VSTAck
                         
