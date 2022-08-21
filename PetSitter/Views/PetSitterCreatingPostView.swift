@@ -113,7 +113,7 @@ private extension PetSitterCreatingPostView {
         } footer: {
             Text("Please fill out all the fields.")
         }
-
+        
         
     }
     
@@ -133,56 +133,50 @@ private extension PetSitterCreatingPostView {
         VStack {
             
             if showDetailView {
-             
+                
                 //PostListViewModel.shared.loadFromPersistanceStore()
                 if let lastPost = petSitter {
-                   
+                    
                     PostDetailView(petSitter: lastPost ).transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
                     
                 }
             } else {
                 
                 Button("Create a post"){
-                    let group = DispatchGroup()
-                    group.enter()
                     
-                    DispatchQueue.main.async {
-                        hideKeyboard()
-                        prepareForCreatePost(firstName: postFirstNameText, lastName: postLastNameText, price: Int(postPrice) ?? 0, zipCode: postZipCode, email: postEmail, phone: postPhone, picture: imageSelected.toJpegString(compressionQuality: 0.5) ?? "no_image", bodyText: postBodyText)
+                    hideKeyboard()
+                    prepareForCreatePost(firstName: postFirstNameText, lastName: postLastNameText, price: Int(postPrice) ?? 0, zipCode: postZipCode, email: postEmail, phone: postPhone, picture: imageSelected.toJpegString(compressionQuality: 0.5) ?? "no_image", bodyText: postBodyText)
+                    
+                    
+                    
+                    withAnimation {
                         
-                        group.leave()
+                        postFirstNameText = ""
+                        postLastNameText = ""
+                        postPrice = ""
+                        postPhone = ""
+                        postEmail = ""
+                        //  postPicture = ""
+                        postZipCode = ""
+                        postBodyText = ""
+                        
+                        
+                        self.showDetailView = true
+                        
+                        self.showAlert = true
+                        
                     }
                     
-                    group.notify(queue: .main) {
-                        
-                        withAnimation {
-                            
-                            postFirstNameText = ""
-                            postLastNameText = ""
-                            postPrice = ""
-                            postPhone = ""
-                            postEmail = ""
-                            //  postPicture = ""
-                            postZipCode = ""
-                            postBodyText = ""
-                            
-                           
-                            self.showDetailView = true
-                           
-                            self.showAlert = true
-                            
-                        }
-                    }
-                  
+                    
                     
                 }
-             
+                
                 
             }
             
         }//VStack
         
-       
+        
         
         
     }
@@ -202,7 +196,7 @@ private extension PetSitterCreatingPostView {
                         
                         PostListViewModel.shared.createPost(post: post)
                         petSitter = post
-                       
+                        
                         
                     case .failure(let error):
                         print("smth bad happened ", error)
@@ -258,10 +252,10 @@ extension String {
     }
 }
 
-#if canImport(UIKit)
+
 extension View {
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
-#endif
+
