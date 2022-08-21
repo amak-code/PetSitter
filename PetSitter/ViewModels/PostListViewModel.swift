@@ -51,10 +51,11 @@ class PostListViewModel: ObservableObject {
     }
     
     
-    func updateFilteredPosts(){
-        filteredPosts = posts.sorted { (post1, post2) -> Bool in
+    func updateFilteredPosts(posts: [Post]) -> [Post]{
+        self.posts = posts.sorted { (post1, post2) -> Bool in
             return post1.price < post2.price
         }
+        return posts
     }
     
     //MARK: - PersistanceStore

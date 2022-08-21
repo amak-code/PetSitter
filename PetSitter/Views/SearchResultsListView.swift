@@ -97,12 +97,17 @@ extension SearchResultsListView {
     
     func filterListPosts(posts: [Post]) -> [Post] {
         
-      //  var filteredPosts: [Post] = []
         //working with cases when user didn't input all the data
         
         if firstName == "" && lastName == "" && pricePerHour == "" && zipCode == "" {
             
-            return posts
+            //sorting all the posts
+            let allPosts = posts.sorted {
+                (post1, post2) -> Bool in
+                    return post1.price < post2.price
+            }
+            
+            return allPosts
         }
         
         let filteredPosts = posts.filter({ (post) in
@@ -180,8 +185,10 @@ extension SearchResultsListView {
            
                 return post.nameLast == lastName
                 
-        })
-        
+        })  //sorting filtered posts
+            .sorted { (post1, post2) -> Bool in
+                return post1.price < post2.price
+            }
         return filteredPosts
     }
     
