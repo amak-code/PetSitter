@@ -11,22 +11,23 @@ import MapKit
 
 class PostListViewModel: ObservableObject {
     
-  static var shared = PostListViewModel()
+    static var shared = PostListViewModel()
     init() {
-        loadFromPersistanceStore()
-       // updateFilteredPosts()
-        if !posts.isEmpty{
+      loadFromPersistanceStore()
+        if posts.count != 0{
             
-            for i in 0 ..< posts.count {
+            for (i, _) in posts.enumerated().reversed() {
                 deletePost(index: i)
             }
+            
+            saveToPersistanceStore()
         }
+     //loadFromPersistanceStore()
+       
     }
-
     
-  @Published var posts: [Post] = [
-    Post(nameFirst: "Meggie",nameLast: "Johns", likesCount: 40, phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_2", zipcode: "97123", price: 45, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price.", location: Location(latitude: 37.795162, longitude: -122.402728)),
-   Post(nameFirst: "John", nameLast: "Smith",likesCount: 35, phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_1", zipcode: "97123", price: 35, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price.", location: Location(latitude: 37.7897, longitude: -122.3972))]
+    
+    @Published var posts: [Post] = []
     
     @Published var filteredPosts: [Post] = []
     
@@ -40,14 +41,13 @@ class PostListViewModel: ObservableObject {
     func deletePost(index: Int){
         let post = posts[index]
         let postDate = post.date
-        let expirationDate = postDate.addingTimeInterval(8640000)
+        let expirationDate = postDate.addingTimeInterval(2592000)
         let currentDate = Date()
         let range = postDate...currentDate
         if range.contains(expirationDate){
             posts.remove(at: index)
         }
         
-        saveToPersistanceStore()
     }
     
     

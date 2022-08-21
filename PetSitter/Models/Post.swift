@@ -18,7 +18,7 @@ struct Post: Identifiable, Codable {
     var likesCount: Int = 0
     var phone: String
     var email: String
-    var picture: String = "sitter_1"
+    var picture: String 
     var zipcode: String
     var price: Int
     var textPost: String
