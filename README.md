@@ -4,7 +4,7 @@
 
 **PetSitter** is an app that helps to connect pet owners with pet sitters.
 
-<img src="PetSitter/Assets.xcassets/main_page.imageset/main_page.PNG">
+<img src="PetSitter/Images/main_page.PNG">
 <br/><br/><br/>
 
 
