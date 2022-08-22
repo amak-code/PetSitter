@@ -12,14 +12,11 @@ struct PetSitterCreatingPostView: View {
     
     
     //vars for setting up the imagepicker
-    // @State var changeProfileImage = false
     @State var openCameraRoll = false
     @State var imageSelected = UIImage()
+    
     @State var showAlert: Bool = false
     @State var petSitter: Post?
-    
-    //@ObservedObject  var postViewModel: PostListViewModel
-    
     @State var showDetailView: Bool = false
     @State var postFirstNameText: String = ""
     @State var postLastNameText: String = ""
@@ -27,7 +24,6 @@ struct PetSitterCreatingPostView: View {
     @State var postZipCode: String = ""
     @State var postEmail: String = ""
     @State var postPhone: String = ""
-    // @State var postPicture: String = ""
     @State var postBodyText = "Write something about yourself"
     
     init(){
@@ -39,11 +35,9 @@ struct PetSitterCreatingPostView: View {
         Form {
             
             general
-            
-            
+
             createPostButton
             
-            //Spacer()
         }
         .alert(Text("Important message"), isPresented: $showAlert, actions: {
             Button("OK", role: .cancel, action: {})
@@ -51,8 +45,7 @@ struct PetSitterCreatingPostView: View {
             Text("Thank you for creating a post. It will expire in 30 days.")
         })
         .background(.yellow)
-        
-        
+
     }
 }
 
@@ -113,8 +106,7 @@ private extension PetSitterCreatingPostView {
         } footer: {
             Text("Please fill out all the fields.")
         }
-        
-        
+
     }
     
     
@@ -134,7 +126,6 @@ private extension PetSitterCreatingPostView {
             
             if showDetailView {
                 
-                //PostListViewModel.shared.loadFromPersistanceStore()
                 if let lastPost = petSitter {
                     
                     PostDetailView(petSitter: lastPost ).transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
@@ -146,10 +137,6 @@ private extension PetSitterCreatingPostView {
                     
                     hideKeyboard()
                     prepareForCreatePost(firstName: postFirstNameText, lastName: postLastNameText, price: Int(postPrice) ?? 0, zipCode: postZipCode, email: postEmail, phone: postPhone, picture: imageSelected.toJpegString(compressionQuality: 0.5) ?? "no_image", bodyText: postBodyText)
-                    
-                    
-                    
-                    withAnimation {
                         
                         postFirstNameText = ""
                         postLastNameText = ""
@@ -164,28 +151,17 @@ private extension PetSitterCreatingPostView {
                         self.showDetailView = true
                         
                         self.showAlert = true
-                        
-                    }
-                    
-                    
-                    
+ 
                 }
-                
                 
             }
             
         }//VStack
-        
-        
-        
-        
+
     }
     
     func prepareForCreatePost(firstName: String, lastName: String, price: Int, zipCode: String, email: String, phone: String, picture: String, bodyText: String){
         
-        
-        
-        //let postPicture = (picture != "") ? picture : "no_image"
         
         if zipCode != "" {
             getCoordinate(addressString: zipCode) { res in

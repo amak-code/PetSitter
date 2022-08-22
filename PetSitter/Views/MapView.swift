@@ -16,14 +16,6 @@ struct MapView: View {
     @State var userTrackingMode: MapUserTrackingMode = .follow
     @State var zoom: CGFloat = 30
  
-//    var locations: [Location] {
-//
-//      var first =  Location(name: "First sitter", coordinate: CLLocationCoordinate2D(latitude: 37.795162, longitude: -122.402728), post: Post(name: "Meggie", phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_1", zipcode: 97123, price: 25, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price."));
-//      var second = Location(name: "Second sitter", coordinate: CLLocationCoordinate2D(latitude: 37.7897, longitude: -122.3972), post: Post(name: "John", phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_1", zipcode: 97123, price: 25, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price."))
-//
-//        return [first, second]
-//    }
-//
     var body: some View {
         
         VStack{
@@ -34,9 +26,9 @@ struct MapView: View {
             ){petsitter in
                 MapAnnotation(coordinate: petsitter.location.coordinate) {
                     NavigationLink {
-                       //MARK: -   will it work that way or should I make constant???
+                       
                         PostDetailView(petSitter: petsitter)
-                        //Text(petsitter.name ?? "")
+                    
                     } label: {
                         Circle()
                             .stroke(.red, lineWidth: 3)
@@ -60,13 +52,11 @@ struct MapView: View {
                         viewModel.mapRegion.span.latitudeDelta = CLLocationDegrees(value)
                         viewModel.mapRegion.span.longitudeDelta = CLLocationDegrees(value)
                     }
-               
             
         }//Vstack
         .font(.title)
     }
-    
-    
+
     
 }
 
