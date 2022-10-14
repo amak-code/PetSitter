@@ -14,8 +14,7 @@ struct SearchView: View {
     @State var lastName: String = ""
     @State var pricePerHour: String = ""
     @State var zipCode: String = ""
-    
-    
+        
     init(){
            UITableView.appearance().backgroundColor = .clear
        }
@@ -85,7 +84,7 @@ private extension SearchView {
 //                        .cornerRadius(12)
                     }
                                    
-                NavigationLink(destination: SearchResultsListView(firstName: firstName, lastName: lastName, pricePerHour: pricePerHour, zipCode: zipCode, posts: PostListViewModel.shared.posts), isActive: $isShowingSearchResultView){EmptyView()}.buttonStyle(.plain)
+                NavigationLink(destination: SearchResultsListView(firstName: firstName, lastName: lastName, pricePerHour: pricePerHour, zipCode: zipCode), isActive: $isShowingSearchResultView){EmptyView()}.buttonStyle(.plain)
             
             }.padding()
         

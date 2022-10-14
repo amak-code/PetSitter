@@ -11,6 +11,10 @@ import CoreLocation
 
 
 struct Post: Identifiable, Codable {
+//    static func == (lhs: Post, rhs: Post) -> Bool {
+//        return lhs.id == rhs.id
+//    }
+    
    
     var id = UUID().uuidString
     var nameFirst: String

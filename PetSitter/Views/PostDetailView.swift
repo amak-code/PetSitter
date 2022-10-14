@@ -10,10 +10,7 @@ import MapKit
 
 struct PostDetailView: View {
     
-    var petSitter: Post
-    
-   //@ObservedObject var postViewModel = PostListViewModel()
-
+   var petSitter: Post
     
     var body: some View {
         
@@ -36,6 +33,7 @@ struct PostDetailView: View {
             
                 HStack {
                     
+                    
                     Text(petSitter.nameFirst)
                         .font(.title2)
                         .fontWeight(.bold)
@@ -44,8 +42,18 @@ struct PostDetailView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding(.trailing)
-                    
-                    Label("\(petSitter.likesCount)", systemImage: "heart")
+                    HStack {
+                        
+                        Button(action:{PostListViewModel.shared.likePost(post: petSitter)
+                           
+                        } )
+                        {
+                            Image(systemName: "heart")
+                            
+                        }
+                        Text("\(petSitter.likesCount)")
+                        
+                    }
                 }
               Text("Price for pet sitting per hour: \(petSitter.price) $")
                     .font(.system(size:17, weight: .bold, design: .default))
@@ -72,13 +80,6 @@ struct PostDetailView: View {
     }
 }
 
-struct PostDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-//        PostDetailView(petSitter: Post(nameFirst: "Meggie", nameLast: "Johns", phone: "415-333-0000", email: "aaa@gmail.com", picture: "sitter_2", zipcode: 97123, price: 25, textPost: "Hi, My name is Meggie and I like dogs and cats. I can take care of them very well. I'm flexible with the hours and price.", location: Location(coordinate: CLLocationCoordinate2D(latitude: 37.795162, longitude: -122.402728))))
-        PostDetailView(petSitter: PostListViewModel.shared.posts.first!)
-    }
-}
 
 //extension PostDetailView {
 //    func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {

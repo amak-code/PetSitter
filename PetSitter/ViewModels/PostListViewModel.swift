@@ -12,6 +12,8 @@ import MapKit
 class PostListViewModel: ObservableObject {
     
     static var shared = PostListViewModel()
+    
+    
     init() {
       loadFromPersistanceStore()
         if posts.count != 0{
@@ -25,7 +27,7 @@ class PostListViewModel: ObservableObject {
      //loadFromPersistanceStore()
        
     }
-    
+  
     
     @Published var posts: [Post] = []
     
@@ -36,6 +38,20 @@ class PostListViewModel: ObservableObject {
         posts.append(petsitter)
         saveToPersistanceStore()
         
+    }
+    
+    func likePost(post: Post)  {
+        if let i = posts.firstIndex(where: {p in p.id == post.id}){
+            posts[i].likesCount =  posts[i].likesCount + 1
+
+        }
+        saveToPersistanceStore()
+       
+    }
+    
+    func getPostById(id: String)-> Post? {
+
+        return posts.first(where: {post in post.id == id})
     }
     
     func deletePost(index: Int){

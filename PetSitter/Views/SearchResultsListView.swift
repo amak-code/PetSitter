@@ -15,23 +15,15 @@ struct SearchResultsListView: View {
     var lastName: String
     var pricePerHour: String
     var zipCode: String
-    
- //   @ObservedObject  var postViewModel: PostListViewModel
-    var posts:[Post]
-    
-    //var filteredPosts: [Post] = []
-    
-//    init(){
-//           UITableView.appearance().backgroundColor = .clear
-//       }
-   
 
+    @ObservedObject var viewModel = PostListViewModel.shared
     
+
     var body: some View {
         
         VStack {
             
-            List(filterListPosts(posts: posts), id: \.id) {petSitter in
+            List(filterListPosts(posts: viewModel.posts), id: \.id) {petSitter in
                 
                 NavigationLink(destination: PostDetailView(petSitter: petSitter), label: {
                     
@@ -87,11 +79,7 @@ struct SearchResultsListView: View {
     }
 }
 
-//struct SearchResultsListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchResultsListView(posts: PostListViewModel.shared.posts)
-//    }
-//}
+
 
 extension SearchResultsListView {
     

@@ -12,22 +12,24 @@ import MapKit
 
 struct MapView: View {
     
-    @StateObject private var viewModel = MapViewModel()
+    @StateObject private var viewMapModel = MapViewModel()
     @State var userTrackingMode: MapUserTrackingMode = .follow
     @State var zoom: CGFloat = 30
- 
+    @ObservedObject var viewModel = PostListViewModel.shared
+    
+    
     var body: some View {
         
         VStack{
             
-            Map(coordinateRegion: $viewModel.mapRegion,
+            Map(coordinateRegion: $viewMapModel.mapRegion,
                 interactionModes: .all,
-                showsUserLocation: true, userTrackingMode: $userTrackingMode, annotationItems: PostListViewModel.shared.posts
+                showsUserLocation: true, userTrackingMode: $userTrackingMode, annotationItems: viewModel.posts
             ){petsitter in
                 MapAnnotation(coordinate: petsitter.location.coordinate) {
                     NavigationLink {
                        
-                        PostDetailView(petSitter: petsitter)
+                        PostDetailViewByID(postID: petsitter.id)
                     
                     } label: {
                         Circle()
@@ -40,7 +42,7 @@ struct MapView: View {
             }
             .ignoresSafeArea()
             .onAppear{
-                viewModel.checkLocationServicesIsEnabled()
+                viewMapModel.checkLocationServicesIsEnabled()
             }
             
             Slider(value: $zoom,
@@ -49,8 +51,8 @@ struct MapView: View {
                          maximumValueLabel: Image(systemName: "minus.circle"), label: {})
                     .padding(.horizontal)
                     .onChange(of: zoom) { value in
-                        viewModel.mapRegion.span.latitudeDelta = CLLocationDegrees(value)
-                        viewModel.mapRegion.span.longitudeDelta = CLLocationDegrees(value)
+                        viewMapModel.mapRegion.span.latitudeDelta = CLLocationDegrees(value)
+                        viewMapModel.mapRegion.span.longitudeDelta = CLLocationDegrees(value)
                     }
             
         }//Vstack
