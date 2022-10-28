@@ -17,7 +17,7 @@ struct SearchResultsListView: View {
     var zipCode: String
 
     @ObservedObject var viewModel = PostListViewModel.shared
-    
+    @State private var viewDidLoad = false
 
     var body: some View {
         
@@ -51,10 +51,7 @@ struct SearchResultsListView: View {
                             Text("\(petSitter.price) $")
                                 .font(.subheadline)
                                 .font(.system(size: 15, weight: .semibold))
-//                            Text("Phone number: \(petSitter.phone) ")
-//                                .font(.system(size: 12, weight: .light))
-//                                .lineLimit(4)
-//                                .minimumScaleFactor(0.5)
+
                             Text("About myself: \(petSitter.textPost) ")
                                 .font(.system(size: 14, weight: .light))
                                 .lineLimit(4)
@@ -74,8 +71,20 @@ struct SearchResultsListView: View {
             // .navigationTitle("Results of your search")
             
         }//Vstack
-        .onAppear{PostListViewModel.shared.loadFromPersistanceStore()}
+        .onAppear{
+            if viewDidLoad == false {
+                
+                viewDidLoad = true
+                viewModel.listentoRealtimeDatabase()
+                
+                }
+                
+            }
         
+        .onDisappear{
+            viewModel.stopListening()
+        }
+//        
     }
 }
 
@@ -89,7 +98,7 @@ extension SearchResultsListView {
         
         if firstName == "" && lastName == "" && pricePerHour == "" && zipCode == "" {
             
-            //sorting all the posts
+           // sorting all the posts
             let allPosts = posts.sorted {
                 (post1, post2) -> Bool in
                     return post1.price < post2.price

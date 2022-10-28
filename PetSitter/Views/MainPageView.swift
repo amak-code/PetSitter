@@ -73,7 +73,9 @@ struct MainPageView: View {
            
             
         }//navigationview
-        .onAppear(perform: PostListViewModel.shared.loadFromPersistanceStore)
+        .onAppear{
+            PostListViewModel.shared.listentoRealtimeDatabase()
+        }
     }
 }
 

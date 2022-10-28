@@ -43,6 +43,10 @@ struct MapView: View {
             .ignoresSafeArea()
             .onAppear{
                 viewMapModel.checkLocationServicesIsEnabled()
+                viewModel.listentoRealtimeDatabase()
+            }
+            .onDisappear{
+                viewModel.stopListening()
             }
             
             Slider(value: $zoom,
